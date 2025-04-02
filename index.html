@@ -1,0 +1,489 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Hlomelang Lipholo | Full Stack Developer</title>
+    <style>
+        :root {
+            --primary: #2563eb;
+            --primary-dark: #1d4ed8;
+            --secondary: #64748b;
+            --dark: #1e293b;
+            --light: #f8fafc;
+            --gray: #e2e8f0;
+            --success: #10b981;
+        }
+
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+            font-family: 'Inter', -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, Oxygen, Ubuntu, Cantarell, 'Open Sans', 'Helvetica Neue', sans-serif;
+        }
+
+        body {
+            background-color: var(--light);
+            color: var(--dark);
+            line-height: 1.6;
+        }
+
+        .container {
+            max-width: 1200px;
+            margin: 0 auto;
+            padding: 0 2rem;
+        }
+
+        header {
+            background-color: var(--dark);
+            color: var(--light);
+            padding: 2rem 0;
+            position: relative;
+        }
+
+        nav {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+        }
+
+        .logo {
+            font-size: 1.5rem;
+            font-weight: 700;
+            color: var(--light);
+            text-decoration: none;
+        }
+
+        .nav-links {
+            display: flex;
+            gap: 2rem;
+        }
+
+        .nav-links a {
+            color: var(--gray);
+            text-decoration: none;
+            transition: color 0.3s ease;
+        }
+
+        .nav-links a:hover {
+            color: var(--light);
+        }
+
+        .hero {
+            padding: 6rem 0;
+            display: flex;
+            align-items: center;
+            justify-content: space-between;
+            gap: 3rem;
+        }
+
+        .hero-content {
+            flex: 1;
+        }
+
+        .hero-image {
+            flex: 0 0 300px;
+        }
+
+        .profile-image {
+            border-radius: 50%;
+            width: 250px;
+            height: 250px;
+            object-fit: cover;
+            border: 4px solid var(--light);
+            box-shadow: 0 10px 20px rgba(0, 0, 0, 0.1);
+        }
+
+        .section {
+            padding: 4rem 0;
+            border-bottom: 1px solid var(--gray);
+        }
+
+        .section:last-child {
+            border-bottom: none;
+        }
+
+        h1 {
+            font-size: 2.5rem;
+            margin-bottom: 0.5rem;
+            color: var(--light);
+        }
+
+        h2 {
+            font-size: 2rem;
+            margin-bottom: 1.5rem;
+            color: var(--dark);
+            position: relative;
+            padding-bottom: 0.5rem;
+        }
+
+        h2::after {
+            content: '';
+            position: absolute;
+            left: 0;
+            bottom: 0;
+            width: 50px;
+            height: 3px;
+            background-color: var(--primary);
+        }
+
+        h3 {
+            font-size: 1.25rem;
+            margin-bottom: 0.5rem;
+            color: var(--primary-dark);
+        }
+
+        .subtitle {
+            font-size: 1.25rem;
+            color: var(--primary);
+            margin-bottom: 1.5rem;
+        }
+
+        p {
+            margin-bottom: 1rem;
+        }
+
+        .btn {
+            display: inline-block;
+            background-color: var(--primary);
+            color: var(--light);
+            padding: 0.5rem 1.5rem;
+            border-radius: 4px;
+            text-decoration: none;
+            transition: background-color 0.3s ease;
+            font-weight: 500;
+            margin-top: 1rem;
+            border: none;
+            cursor: pointer;
+        }
+
+        .btn:hover {
+            background-color: var(--primary-dark);
+        }
+
+        .skill-list {
+            display: flex;
+            flex-wrap: wrap;
+            gap: 1rem;
+            margin-top: 1.5rem;
+        }
+
+        .skill-tag {
+            background-color: var(--gray);
+            padding: 0.5rem 1rem;
+            border-radius: 20px;
+            font-size: 0.9rem;
+            color: var(--dark);
+            display: inline-flex;
+            align-items: center;
+            gap: 0.5rem;
+        }
+
+        .skill-tag.featured {
+            background-color: var(--primary);
+            color: var(--light);
+        }
+
+        .experience-item, .education-item {
+            margin-bottom: 2rem;
+        }
+
+        .period {
+            color: var(--secondary);
+            font-size: 0.9rem;
+            margin-bottom: 0.5rem;
+        }
+
+        .social-links {
+            display: flex;
+            gap: 1rem;
+            margin-top: 1.5rem;
+        }
+
+        .social-icon {
+            width: 20px;
+            height: 20px;
+            fill: currentColor;
+        }
+
+        .contact-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+            gap: 2rem;
+            margin-top: 2rem;
+        }
+
+        .contact-item {
+            display: flex;
+            align-items: center;
+            gap: 1rem;
+            padding: 1rem;
+            background-color: var(--gray);
+            border-radius: 8px;
+        }
+
+        footer {
+            background-color: var(--dark);
+            color: var(--light);
+            padding: 2rem 0;
+            text-align: center;
+        }
+
+        /* Animation styles */
+        @keyframes fadeIn {
+            from { opacity: 0; transform: translateY(20px); }
+            to { opacity: 1; transform: translateY(0); }
+        }
+
+        .animate {
+            animation: fadeIn 0.6s ease forwards;
+            opacity: 0;
+        }
+
+        /* Code-like design elements */
+        .code-block {
+            position: relative;
+            padding: 1rem;
+            background-color: var(--dark);
+            color: var(--success);
+            border-radius: 8px;
+            font-family: 'Courier New', Courier, monospace;
+            margin: 1.5rem 0;
+            overflow-x: auto;
+        }
+
+        .code-comment {
+            color: var(--secondary);
+        }
+
+        .code-keyword {
+            color: #ff79c6;
+        }
+
+        .code-string {
+            color: #f1fa8c;
+        }
+
+        .code-function {
+            color: #50fa7b;
+        }
+
+        /* Responsive styles */
+        @media (max-width: 768px) {
+            .hero {
+                flex-direction: column-reverse;
+                padding: 3rem 0;
+            }
+
+            .hero-image {
+                flex: 0 0 auto;
+            }
+
+            .profile-image {
+                width: 200px;
+                height: 200px;
+            }
+
+            h1 {
+                font-size: 2rem;
+            }
+
+            h2 {
+                font-size: 1.5rem;
+            }
+
+            .nav-links {
+                display: none;
+            }
+        }
+    </style>
+</head>
+<body>
+    <header>
+        <div class="container">
+            <nav>
+                <a href="#" class="logo">&lt;HL /&gt;</a>
+                <div class="nav-links">
+                    <a href="#about">About</a>
+                    <a href="#skills">Skills</a>
+                    <a href="#experience">Experience</a>
+                    <a href="#education">Education</a>
+                    <a href="#contact">Contact</a>
+                </div>
+            </nav>
+            <div class="hero">
+                <div class="hero-content">
+                    <h1>Hlomelang Lipholo</h1>
+                    <p class="subtitle">Full Stack Developer • Software Engineer • UI/UX Designer</p>
+                    <p>Highly skilled Full Stack Software Engineer with expertise in developing scalable, efficient, and user-friendly applications. With experience in UI/UX Design, I bring a unique blend of technical and creative skills to craft intuitive and visually stunning digital experiences.</p>
+                    <a href="#contact" class="btn">Get in Touch</a>
+                </div>
+                <div class="hero-image">
+                    <img src="https://media.licdn.com/dms/image/v2/D4D03AQH3HQPM84zVAg/profile-displayphoto-shrink_200_200/profile-displayphoto-shrink_200_200/0/1731947452433?e=2147483647&v=beta&t=WwN2TV8E-CpCsCS13b1bZr9gjSmELEanww1m32OM7cc" alt="Hlomelang Lipholo" class="profile-image">
+                </div>
+            </div>
+        </div>
+    </header>
+
+    <section id="about" class="section">
+        <div class="container animate">
+            <h2>About Me</h2>
+            <p>I'm a Full Stack Software Engineer with a passion for creating elegant, efficient solutions to complex problems. My background in graphic design coupled with technical expertise allows me to approach development from both a functional and aesthetic perspective.</p>
+            <p>Proficient in a range of programming languages, frameworks, and design tools, I excel in collaborative environments, driving projects from concept to deployment. I'm constantly learning and adapting to new technologies to stay at the forefront of web development.</p>
+            <p>My goal is to build applications that not only meet technical requirements but also provide exceptional user experiences. I believe that the best digital products are those that seamlessly blend functionality with intuitive design.</p>
+            
+            <div class="code-block">
+                <span class="code-comment">// A bit about my development philosophy</span><br>
+                <span class="code-keyword">const</span> <span class="code-function">developmentApproach</span> = () => {<br>
+                &nbsp;&nbsp;return {<br>
+                &nbsp;&nbsp;&nbsp;&nbsp;cleanCode: <span class="code-string">"Always strive for readability and maintainability"</span>,<br>
+                &nbsp;&nbsp;&nbsp;&nbsp;userCentric: <span class="code-string">"Design with the end-user in mind"</span>,<br>
+                &nbsp;&nbsp;&nbsp;&nbsp;continuous: <span class="code-string">"Never stop learning and improving"</span><br>
+                &nbsp;&nbsp;};<br>
+                };
+            </div>
+        </div>
+    </section>
+
+    <section id="skills" class="section">
+        <div class="container animate">
+            <h2>Technical Skills</h2>
+            
+            <h3>Frontend Development</h3>
+            <div class="skill-list">
+                <span class="skill-tag featured">HTML</span>
+                <span class="skill-tag featured">CSS</span>
+                <span class="skill-tag featured">JavaScript</span>
+                <span class="skill-tag featured">React.js</span>
+                <span class="skill-tag">Vue.js</span>
+                <span class="skill-tag featured">Bootstrap</span>
+                <span class="skill-tag">jQuery</span>
+                <span class="skill-tag">JSON</span>
+            </div>
+            
+            <h3>Backend Development</h3>
+            <div class="skill-list">
+                <span class="skill-tag featured">Node.js</span>
+                <span class="skill-tag featured">Express.js</span>
+                <span class="skill-tag featured">MongoDB</span>
+                <span class="skill-tag">REST APIs</span>
+            </div>
+            
+            <h3>Tools & Technologies</h3>
+            <div class="skill-list">
+                <span class="skill-tag featured">GitHub</span>
+                <span class="skill-tag">Adobe Photoshop</span>
+                <span class="skill-tag">Adobe Illustrator</span>
+                <span class="skill-tag">Adobe InDesign</span>
+            </div>
+        </div>
+    </section>
+
+    <section id="experience" class="section">
+        <div class="container animate">
+            <h2>Work Experience</h2>
+            
+            <div class="experience-item">
+                <h3>Full Stack Software Engineer</h3>
+                <p class="period">Freelance (Self-employed) • July 2024 - Present</p>
+                <p>Working as a freelance developer on various client projects, providing end-to-end development solutions from design to deployment. Specializing in building responsive web applications using modern JavaScript frameworks and robust backend systems.</p>
+            </div>
+        </div>
+    </section>
+
+    <section id="education" class="section">
+        <div class="container animate">
+            <h2>Education</h2>
+            
+            <div class="education-item">
+                <h3>Software Engineering</h3>
+                <p class="period">HyperionDev • October 2024 - April 2025</p>
+                <p>Comprehensive software engineering bootcamp focusing on modern development practices and technologies.</p>
+            </div>
+            
+            <div class="education-item">
+                <h3>Full Stack Web Development</h3>
+                <p class="period">HyperionDev • January 2024 - June 2024</p>
+                <p>Intensive program covering front-end and back-end web development technologies.</p>
+            </div>
+            
+            <div class="education-item">
+                <h3>UI/UX Design</h3>
+                <p class="period">Edureka Alumni • October 2024 - December 2024</p>
+                <p>Specialized training in user interface and user experience design principles and practices.</p>
+            </div>
+            
+            <div class="education-item">
+                <h3>Java Certification</h3>
+                <p class="period">Edureka Alumni</p>
+                <p>Professional certification in Java programming language and related technologies.</p>
+            </div>
+            
+            <div class="education-item">
+                <h3>Bachelor of Arts in Graphic Design</h3>
+                <p class="period">Limkokwing University of Creative Technology • October 2010 - November 2013</p>
+                <p>Foundational education in visual communication, design principles, and creative problem-solving.</p>
+            </div>
+        </div>
+    </section>
+
+    <section id="contact" class="section">
+        <div class="container animate">
+            <h2>Contact Me</h2>
+            <p>I'm always interested in new opportunities and collaborations. Feel free to reach out if you'd like to work together or just want to connect!</p>
+            
+            <div class="contact-grid">
+                <div class="contact-item">
+                    <svg class="social-icon" viewBox="0 0 24 24">
+                        <path d="M20 4H4c-1.1 0-1.99.9-1.99 2L2 18c0 1.1.9 2 2 2h16c1.1 0 2-.9 2-2V6c0-1.1-.9-2-2-2zm0 4l-8 5-8-5V6l8 5 8-5v2z"/>
+                    </svg>
+                    <span>lipholo.info@gmail.com</span>
+                </div>
+                
+                <div class="contact-item">
+                    <svg class="social-icon" viewBox="0 0 24 24">
+                        <path d="M6.62 10.79c1.44 2.83 3.76 5.14 6.59 6.59l2.2-2.2c.27-.27.67-.36 1.02-.24 1.12.37 2.33.57 3.57.57.55 0 1 .45 1 1V20c0 .55-.45 1-1 1-9.39 0-17-7.61-17-17 0-.55.45-1 1-1h3.5c.55 0 1 .45 1 1 0 1.25.2 2.45.57 3.57.11.35.03.74-.25 1.02l-2.2 2.2z"/>
+                    </svg>
+                    <span>+27 79 900 8449</span>
+                </div>
+                
+                <div class="contact-item">
+                    <svg class="social-icon" viewBox="0 0 24 24">
+                        <path d="M12 12c2.21 0 4-1.79 4-4s-1.79-4-4-4-4 1.79-4 4 1.79 4 4 4zm0 2c-2.67 0-8 1.34-8 4v2h16v-2c0-2.66-5.33-4-8-4z"/>
+                    </svg>
+                    <span>lipholo-dev</span>
+                </div>
+                
+                <div class="contact-item">
+                    <svg class="social-icon" viewBox="0 0 24 24">
+                        <path d="M12 0c-6.626 0-12 5.373-12 12 0 5.302 3.438 9.8 8.207 11.387.599.111.793-.261.793-.577v-2.234c-3.338.726-4.033-1.416-4.033-1.416-.546-1.387-1.333-1.756-1.333-1.756-1.089-.745.083-.729.083-.729 1.205.084 1.839 1.237 1.839 1.237 1.07 1.834 2.807 1.304 3.492.997.107-.775.418-1.305.762-1.604-2.665-.305-5.467-1.334-5.467-5.931 0-1.311.469-2.381 1.236-3.221-.124-.303-.535-1.524.117-3.176 0 0 1.008-.322 3.301 1.23.957-.266 1.983-.399 3.003-.404 1.02.005 2.047.138 3.006.404 2.291-1.552 3.297-1.23 3.297-1.23.653 1.653.242 2.874.118 3.176.77.84 1.235 1.911 1.235 3.221 0 4.609-2.807 5.624-5.479 5.921.43.372.823 1.102.823 2.222v3.293c0 .319.192.694.801.576 4.765-1.589 8.199-6.086 8.199-11.386 0-6.627-5.373-12-12-12z"/>
+                    </svg>
+                    <span>Hlomelang Lipholo</span>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <footer>
+        <div class="container">
+            <p>&copy; 2025 Hlomelang Lipholo. All rights reserved.</p>
+        </div>
+    </footer>
+
+    <script>
+        // Simple animation for sections
+        const observer = new IntersectionObserver((entries) => {
+            entries.forEach(entry => {
+                if (entry.isIntersecting) {
+                    entry.target.style.animationDelay = '0.2s';
+                    entry.target.style.animationPlayState = 'running';
+                }
+            });
+        }, {threshold: 0.1});
+
+        document.querySelectorAll('.animate').forEach(element => {
+            observer.observe(element);
+        });
+    </script>
+</body>
+</html>
