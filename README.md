@@ -1,2 +1,2 @@
 # MyCV
-# this application is my cv
+# made some changes to variable names
